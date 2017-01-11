@@ -1,5 +1,5 @@
 from django.shortcuts import render,loader
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.template import RequestContext
 
 # For registering a model and handling post request
@@ -42,7 +42,6 @@ def get_form(request):
         request.POST['auth'] = str(rand)
         request.POST._mutable = mutable
 
-
         form = RegistrationForm(request.POST)
 
         # check whether it's valid:
@@ -52,7 +51,7 @@ def get_form(request):
 
             sendSMS(request.POST['phone'] ,str(rand))
 
-            return HttpResponse('Thank you! You will receive a text message soon.')
+            return HttpResponseRedirect('retrieve.html')
         # return HttpResponse('Thank you! You will receive a text message soon.')
 
     # if a GET (or any other method) we'll create a blank form

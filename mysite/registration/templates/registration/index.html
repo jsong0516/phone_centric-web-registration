@@ -22,6 +22,7 @@
     <!-- For Registration page only -->
 	<link rel="stylesheet" href='{% static "css/reset.css" %}'>
 	<link rel="stylesheet" href='{% static "css/style.css" %}' media="screen" type="text/css" />
+  <link rel="stylesheet" href='http://twitter.github.com/bootstrap/assets/js/bootstrap-tab.js'/>
 
   </head>
 
@@ -40,38 +41,58 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Registration</a></li>
-            <li><a href="#retrieve">Retrieve Course Info</a></li>
+            <li class="active"><a href="#reg" data-toggle="tab">Registration</a></li>
+            <li><a href="#ret" data-toggle="tab">Retrieve Course Info</a></li>
           </ul>
         </div>
       </div>
     </nav>
 
+
+
     <div class="container">
- 	  <div class="wrap" id="registration">
-			<div class="avatar" >
-	      <img src='{% static "img/logo.png" %}'>
-	     </div>
-            <form method="POST" action="">
-            <input id="name" name="name"type="text" placeholder="Name" required>
-            <div class="bar">
-            <i></i>
+      <div class="tab-content">
+        <div class="tab-pane active" id="reg">
+       	  <div class="wrap" id="registration">
+      			<div class="avatar" >
+      	      <img src='{% static "img/logo.png" %}'>
+      	     </div>
+                  <form method="POST" action="">
+                  <input id="name" name="name"type="text" placeholder="Name" required>
+                  <div class="bar">
+                  <i></i>
 
-            </div>
-            <input id="phone" name="phone" type="text" placeholder="Mobile Number" required>
-            <div class="bar">
-            <i></i>
-            </div>
-            <input id="course" name="course" type="text" placeholder="Course" required>
+                  </div>
+                  <input id="phone" name="phone" type="text" placeholder="Mobile Number" required>
+                  <div class="bar">
+                  <i></i>
+                  </div>
+                  <input id="course" name="course" type="text" placeholder="Course" required>
 
-            <input id="button" type="submit" placeholder="Submit">
-            </form>
+                  <input id="button" type="submit" placeholder="Submit">
+                  </form>
+          </div>
+        </div>
+        <div class="tab-pane" id="ret">
+
+          <div class="wrap" id="retreive">
+            <div class="avatar" >
+              <img src='{% static "img/logo.png" %}'>
+             </div>
+                  <form method="POST" action="">
+                  <input id="phone" name="phone"type="text" placeholder="Mobile Number (Required)" required>
+                  <div class="bar">
+                  <i></i>
+                  </div>
+                  <input id="auth" name="auth" type="text" placeholder="Code (Optional)">
+
+                  <input id="button" type="submit" placeholder="Submit">
+                  </form>
+          </div>
+
+        </div>
+      </div>
     </div>
-
-
-
-
-    </div><!-- /.container -->
 
 
     <!-- Bootstrap core JavaScript
