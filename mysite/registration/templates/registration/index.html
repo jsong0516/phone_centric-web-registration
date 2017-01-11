@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 {% load staticfiles %}
 <html lang="en">
   <head>
@@ -41,37 +42,33 @@
           <ul class="nav navbar-nav">
             <li class="active"><a href="#">Registration</a></li>
             <li><a href="#retrieve">Retrieve Course Info</a></li>
-            <!-- <li><a href="#courseinfo">Course List</a></li> -->
           </ul>
-        </div><!--/.nav-collapse -->
+        </div>
       </div>
     </nav>
 
     <div class="container">
 
-<!--       <div class="starter-template">
-        <h1>Bootstrap starter template</h1>
-        <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
-      </div>
- -->
 
  	  <div class="wrap">
 			<div class="avatar">
 	      <img src='{% static "img/logo.png" %}'>
 	      	</div>
-			<input type="name" placeholder="Name" required>
-			<div class="bar">
-			<i></i>
 
-			</div>
-			<input type="phone" placeholder="Mobile Number" required>
-			<div class="bar">
-				<i></i>
-			</div>
-			<input type="course" placeholder="Course" required>
-			<!-- <button select="{% url 'handleSubmit' %}" method="post">Submit</button> -->
-			<button onclick="{% url 'handleSubmit' %}" method="post">Submit</button>
+	<form method="POST" action="">
+			<input id="name" name="name"type="text" placeholder="Name" required>
+      <div class="bar">
+      <i></i>
 
+      </div>
+      <input id="phone" name="phone" type="text" placeholder="Mobile Number" required>
+      <div class="bar">
+        <i></i>
+      </div>
+      <input id="course" name="course" type="text" placeholder="Course" required>
+
+			<input id="button" type="submit" placeholder="Submit">
+ 		</form>
 	  </div>
     </div><!-- /.container -->
 

@@ -1,8 +1,7 @@
 from django.conf.urls import url
-from . import views
+from . import views, forms
 
 urlpatterns = [
     url(r'^$', views.index, name='index'),
-    url(r'^$', views.handleSubmit, name='handleSubmit'),
-    # url(r'^$', views.courselist, name='courselist'),
+    url(r'^$', forms.RegistrationForm, name='RegistrationForm'),
 ]
