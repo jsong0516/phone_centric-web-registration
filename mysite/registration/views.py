@@ -9,7 +9,7 @@ from django.views.decorators.csrf import csrf_exempt
 
 # SMS
 from random import randint
-import sms
+from sms import sendSMS
 
 @csrf_exempt
 def index(request):
@@ -32,12 +32,11 @@ def get_form(request):
     # print request.POST['name']
     if request.method == 'POST':
         # create a form instance and populate it with data from the request:
-        
+
         # Generate a random number
         rand = randint(1000, 9999)
         
-        
-        # Hope this is not cheating
+        # Make request as mutable
         mutable = request.POST._mutable
         request.POST._mutable = True
         request.POST['auth'] = str(rand)
@@ -45,16 +44,13 @@ def get_form(request):
 
 
         form = RegistrationForm(request.POST)
-        print "Form"
-        print form
-        # print form['name']['value']
+
         # check whether it's valid:
         if form.is_valid():
 
-
             instance = form.save()
 
-
+            sendSMS(request.POST['phone'] ,str(rand))
 
             return HttpResponse('Thank you! You will receive a text message soon.')
         # return HttpResponse('Thank you! You will receive a text message soon.')
