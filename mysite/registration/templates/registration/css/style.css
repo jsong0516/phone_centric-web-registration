@@ -66,6 +66,15 @@ body {
 .wrap input[type="course"] {
 	border-radius: 0px 0px 7px 7px ;
 }
+.find_course {
+	color: #83afdf ;
+	color: #83afdf;
+	text-decoration: none;
+	font-size: 11px;
+	position: relative;
+	left: 193px;
+	top: -36px;
+}
 .wrap button {
 	width: 100%;
 	border-radius: 7px;
