@@ -6,9 +6,10 @@ class Registration(models.Model):
 	name = models.CharField(max_length=100)
 	phone = models.CharField(max_length=100)
 	course = models.CharField(max_length=100)
+	auth = models.CharField(max_length=100)
 
 # Create your models here.
 class RegistrationForm(ModelForm):
 	class Meta:
 		model = Registration
-		fields = ['name', 'phone', 'course']
+		fields = ['name', 'phone', 'course', 'auth']

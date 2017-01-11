@@ -36,7 +36,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Camino Financial</a>
+          <a class="navbar-brand">Camino Financial</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
@@ -48,28 +48,29 @@
     </nav>
 
     <div class="container">
-
-
- 	  <div class="wrap">
-			<div class="avatar">
+ 	  <div class="wrap" id="registration">
+			<div class="avatar" >
 	      <img src='{% static "img/logo.png" %}'>
-	      	</div>
+	     </div>
+            <form method="POST" action="">
+            <input id="name" name="name"type="text" placeholder="Name" required>
+            <div class="bar">
+            <i></i>
 
-	<form method="POST" action="">
-			<input id="name" name="name"type="text" placeholder="Name" required>
-      <div class="bar">
-      <i></i>
+            </div>
+            <input id="phone" name="phone" type="text" placeholder="Mobile Number" required>
+            <div class="bar">
+            <i></i>
+            </div>
+            <input id="course" name="course" type="text" placeholder="Course" required>
 
-      </div>
-      <input id="phone" name="phone" type="text" placeholder="Mobile Number" required>
-      <div class="bar">
-        <i></i>
-      </div>
-      <input id="course" name="course" type="text" placeholder="Course" required>
+            <input id="button" type="submit" placeholder="Submit">
+            </form>
+    </div>
 
-			<input id="button" type="submit" placeholder="Submit">
- 		</form>
-	  </div>
+
+
+
     </div><!-- /.container -->
 
 

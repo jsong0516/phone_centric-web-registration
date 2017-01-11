@@ -8,4 +8,5 @@ class RegistrationForm(forms.Form):
 	name = forms.CharField(widget=forms.TextInput(attrs={'id' : 'name'}))
 	phone = forms.CharField(widget=forms.TextInput(attrs={'id' : 'phone'}))
 	course = forms.CharField(widget=forms.TextInput(attrs={'id' : 'course'}))
+	# course = forms.CharField(widget=forms.TextInput(attrs={'id' : 'auth'}))
 	
