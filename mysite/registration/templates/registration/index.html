@@ -74,19 +74,17 @@
           </div>
         </div>
         <div class="tab-pane" id="ret">
-
-          <div class="wrap" id="retreive">
+          <div class="wrap" id="registration">
             <div class="avatar" >
               <img src='{% static "img/logo.png" %}'>
              </div>
-                  <form method="POST" action="">
-                  <input id="phone" name="phone"type="text" placeholder="Mobile Number (Required)" required>
-                  <div class="bar">
-                  <i></i>
-                  </div>
-                  <input id="auth" name="auth" type="text" placeholder="Code (Optional)">
-
-                  <input id="button" type="submit" placeholder="Submit">
+                  <form method="GET" action="retrieve">
+                    <input id="name" name="phone"type="text" placeholder="Mobile Number (Required)" required>
+                    <div class="bar">
+                    <i></i>
+                    </div>
+                    <input id="auth" name="auth" type="text" placeholder="Code (Optional)">
+                    <input id="button" type="submit" placeholder="Retrieve">
                   </form>
           </div>
 
