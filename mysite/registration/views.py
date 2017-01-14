@@ -88,6 +88,8 @@ def get_form(request):
             print "Auth : " +request.POST['auth']
             instance = form.save()
             sendSMS(request.POST['phone'], rand)
+            template = loader.get_template('registration/index.html')
+            return HttpResponse(template.render())
             return HttpResponse("Registration is completed. You will receive SMS message shortly")
         # return HttpResponse('Thank you! You will receive a text message soon.')
 
