@@ -44,7 +44,11 @@ def ret_form(request):
 
 	# if auth is invalid then, it should display the info
 	if c_auth is None or c_auth == ''or  (int(c_auth) > ENDING_NUMBER and int(c_auth) < STARTING_NUMBER):
-		correct_auth_code = Registration.objects.filter(phone=c_phone)[0].auth
+		entry = Registration.objects.filter(phone=c_phone)
+		if(len(entry) <= 0):
+			return HttpResponse('No phone number found. Please re-enter')
+
+		correct_auth_code = entry[0].auth
 		sendSMS(c_phone, correct_auth_code)
 		return HttpResponse('Auth is invalid. Sent Auth code again')
 
@@ -85,11 +89,10 @@ def get_form(request):
             print "Name : " + request.POST['name']
             print "Phone : " + request.POST['phone']
             print "Course : " + request.POST['course']
-            print "Auth : " +request.POST['auth']
+            print "Auth : " + request.POST['auth']
             instance = form.save()
             sendSMS(request.POST['phone'], rand)
             template = loader.get_template('registration/index.html')
-            return HttpResponse(template.render())
             return HttpResponse("Registration is completed. You will receive SMS message shortly")
         # return HttpResponse('Thank you! You will receive a text message soon.')
 
