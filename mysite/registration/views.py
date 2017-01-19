@@ -1,6 +1,6 @@
 from django.shortcuts import render,loader
 from django.http import HttpResponse, HttpResponseRedirect
-from django.template import RequestContext
+from django.template import Context, RequestContext
 
 # For registering a model and handling post request
 from models import Registration
@@ -16,19 +16,14 @@ ENDING_NUMBER = 9999
 
 @csrf_exempt
 def index(request):
-	print "index is called"
-	print request
 	if request.method == 'POST':
 		return get_form(request)
-
+	context = Context({"ret": "", "reg" : "active", "alert" : False})
 	template = loader.get_template('registration/index.html')
-	return HttpResponse(template.render())
+	return HttpResponse(template.render(context))
 
 @csrf_exempt
 def retrieve(request):
-	print "retrieve is called"
-	print request
-
 	if request.method == 'GET':
 		return ret_form(request)
 
@@ -46,16 +41,22 @@ def ret_form(request):
 	if c_auth is None or c_auth == ''or  (int(c_auth) > ENDING_NUMBER and int(c_auth) < STARTING_NUMBER):
 		entry = Registration.objects.filter(phone=c_phone)
 		if(len(entry) <= 0):
-			return HttpResponse('No phone number found. Please re-enter')
+			template = loader.get_template('registration/index.html')
+			context = Context({"ret": "active", "reg" : "", "alert_body" : "No phone number found. Please re-enter your phone number", "alert" : True})
+			return HttpResponse(template.render(context))
 
 		correct_auth_code = entry[0].auth
 		sendSMS(c_phone, correct_auth_code)
-		return HttpResponse('Auth is invalid. Sent Auth code again')
+		template = loader.get_template('registration/index.html')
+		context = Context({"ret": "active", "reg" : "", "alert_body" : "Auth is invalid. Sent Auth code again", "alert" : True})
+		return HttpResponse(template.render(context))
 
 	result = Registration.objects.filter(phone=c_phone, auth=c_auth_ascii)
 
 	if(len(result) <= 0):
-		return HttpResponse('No Match')
+		template = loader.get_template('registration/index.html')
+		context = Context({"ret": "active", "reg" : "", "alert_body" : "No Match", "alert" : True})
+		return HttpResponse(template.render(context))
 
 	result_str = "Name : " + str(result[0].name) + "<br />"
 	result_str += "Phone : " + str(result[0].phone) + "<br />"
@@ -93,10 +94,9 @@ def get_form(request):
             instance = form.save()
             sendSMS(request.POST['phone'], rand)
             template = loader.get_template('registration/index.html')
-            return HttpResponse("Registration is completed. You will receive SMS message shortly")
+            context = Context({"ret": "active", "reg" : "", "alert_body" : "Registration is completed. You will receive SMS message shortly", "alert" : True})
+            return HttpResponse(template.render(context))
         # return HttpResponse('Thank you! You will receive a text message soon.')
-
-    # if a GET (or any other method) we'll create a blank form
     else:
         form = RegistrationForm()
 
