@@ -43,17 +43,14 @@ def ret_form(request):
 		if(len(entry) <= 0):
 			context = Context({"ret": "active", "reg" : "", "alert_body" : "No phone number found. Please re-enter your phone number", "alert" : True})
 			return HttpResponse(template.render(context))
-
 		correct_auth_code = entry[0].auth
 		sendSMS(c_phone, correct_auth_code)
-
-		context = Context({"ret": "active", "reg" : "", "alert_body" : "Auth is invalid. Sent Auth code again", "alert" : True})
+		context = Context({"ret": "active", "reg" : "", "alert_body" : "Authentication is invalid. We will send Authentication code again if phone number is valid", "alert" : True})
 		return HttpResponse(template.render(context))
 
 	result = Registration.objects.filter(phone=c_phone, auth=c_auth_ascii)
 
 	if(len(result) <= 0):
-
 		context = Context({"ret": "active", "reg" : "", "alert_body" : "No Match", "alert" : True})
 		return HttpResponse(template.render(context))
 
@@ -100,7 +97,8 @@ def get_form(request):
             else:
             	print "SMS pass"
             	instance = form.save()
-            	context = Context({"ret": "active", "reg" : "", "alert_body" : "Registration is completed. You will receive SMS message shortly", "alert" : True})
+            	body = "Registration is completed. You will receive SMS message shortly"
+            	context = Context({"ret": "active", "reg" : "", "alert_body" : body, "alert" : True})
             return HttpResponse(template.render(context))
     else:
         form = RegistrationForm()
